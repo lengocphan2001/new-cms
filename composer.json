@@ -1,0 +1,149 @@
+{
+    "name": "kothing/laravel-starter",
+    "description": "A modular CMS starter application built with Laravel 10.x.",
+    "keywords": [
+        "framework",
+        "laravel",
+        "cms",
+        "starter",
+        "admin",
+        "admin dashboard",
+        "laravel blog",
+        "website"
+    ],
+    "license": "GPL-3.0-or-later",
+    "type": "project",
+    "require": {
+        "php": "^8.1",
+        "laravel/framework": "^10.0",
+        "laravel/sanctum": "^3.2",
+        "laravel/slack-notification-channel": "^2.5",
+        "laravel/socialite": "^5.6",
+        "laravel/tinker": "^2.8",
+        "livewire/livewire": "^3.0",
+        "predis/predis": "^2.1",
+        "spatie/laravel-activitylog": "^4.7",
+        "spatie/laravel-backup": "^8.1",
+        "spatie/laravel-html": "^3.2",
+        "spatie/laravel-medialibrary": "^10.7",
+        "spatie/laravel-permission": "^5.9",
+        "star/laravel-installer": "*@dev",
+        "star/laravel-modules": "*@dev",
+        "star/laravel-module-manager": "*@dev",
+        "star/laravel-menu": "*@dev",
+        "star/laravel-datatables-oracle": "*@dev",
+        "star/log-viewer": "*@dev",
+        "star/flash": "*@dev",
+        "star/hashids": "*@dev",
+        "star/support": "*@dev"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8",
+        "fakerphp/faker": "^1.21",
+        "laravel/breeze": "^1.19",
+        "laravel/pint": "^1.6",
+        "laravel/sail": "^1.21",
+        "larastan/larastan": "^2.6",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^7.0",
+        "nunomaduro/phpinsights": "^2.10",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Modules\\": "modules/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "classmap": [
+            "app/Models"
+        ],
+        "files": [
+            "app/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "repositories": {
+        "star/laravel-installer": {
+            "type": "path",
+            "url": "./packages/star/laravel-installer"
+        },
+        "star/laravel-modules": {
+            "type": "path",
+            "url": "./packages/star/laravel-modules"
+        },
+        "star/laravel-module-manager": {
+            "type": "path",
+            "url": "./packages/star/laravel-module-manager"
+        },
+        "star/laravel-menu": {
+            "type": "path",
+            "url": "./packages/star/laravel-menu"
+        },
+        "star/laravel-datatables-oracle": {
+            "type": "path",
+            "url": "./packages/star/laravel-datatables-oracle"
+        },
+        "star/log-viewer": {
+            "type": "path",
+            "url": "./packages/star/log-viewer"
+        },
+        "star/flash": {
+            "type": "path",
+            "url": "./packages/star/flash"
+        },
+        "star/hashids": {
+            "type": "path",
+            "url": "./packages/star/hashids"
+        },
+        "star/support": {
+            "type": "path",
+            "url": "./packages/star/support"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "clear-all": [
+            "composer dumpautoload -o",
+            "@php artisan clear-compiled",
+            "@php artisan cache:clear",
+            "@php artisan route:clear",
+            "@php artisan view:clear",
+            "@php artisan config:clear",
+            "@php artisan cache:forget spatie.permission.cache"
+        ],
+        "pint": [
+            "pint"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

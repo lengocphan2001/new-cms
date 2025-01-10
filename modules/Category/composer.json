@@ -1,0 +1,22 @@
+{
+    "name": "star/category",
+    "description": "",
+    "type": "laravel-module",
+    "authors": [
+        {
+            "name": "star",
+            "email": "star@local.dev"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Category\\": ""
+        }
+    }
+}
