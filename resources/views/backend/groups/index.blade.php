@@ -50,6 +50,9 @@
                                 <x-buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} " small="true" />
                                 @endcan
                                 <x-buttons.show route='{!!route("backend.$module_name.show", $module_name_singular)!!}' title="{{__('Show')}} " small="true" />
+                                @can('delete_'.$module_name)
+                                <a href='{{route("backend.$module_name.destroy", $module_name_singular)}}' class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Delete')}}"><i class="fas fa-trash-alt"></i></a>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach

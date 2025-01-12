@@ -199,6 +199,27 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+        if (! auth()->user()->can('delete_groups')) {
+            abort(404);
+        }
+
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Update';
+
+        $$module_name_singular = $group;
+
+        $group->delete();
+
+        Flash::success("<i class='fas fa-check'></i> Xoa thanh cong")->important();
+
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return redirect("admin/{$module_name}");
     }
 }
