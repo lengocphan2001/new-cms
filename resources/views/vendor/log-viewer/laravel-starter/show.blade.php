@@ -289,5 +289,5 @@ $module_icon = "fa-solid fa-list-check";
 @endpush
 
 @push('after-styles')
-@include('log-viewer::laravel-star.partials.style')
+{{-- @include('log-viewer::laravel-star.partials.style') --}}
 @endpush

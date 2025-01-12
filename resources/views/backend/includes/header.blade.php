@@ -12,9 +12,7 @@ $notifications_latest = optional($notifications)->take(5);
         <span class="text-gray">{{app_name()}}</span>
         <ul class="header-nav ms-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('frontend.index') }}" target="_blank">
-                    <span class="d-none d-sm-inline">{{__("View website")}}</span>&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
+                
             </li>
         </ul>
         <ul class="header-nav ms-3">
@@ -42,22 +40,6 @@ $notifications_latest = optional($notifications)->take(5);
             </li>
         </ul>
         <ul class="header-nav ms-3">
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa-solid fa-language"></i>&nbsp; {{strtoupper(App::getLocale())}}
-                </a>
-                <div class="dropdown-menu dropdown-menu-end pt-0">
-                    <div class="dropdown-header bg-light py-2 rounded-top-2">
-                        <div class="fw-semibold">{{ __('Change language') }}</div>
-                    </div>
-                    @foreach(config('app.available_locales') as $locale_code => $locale_name)
-                    <a class="dropdown-item" href="{{route('language.switch', $locale_code)}}">
-                        {{ $locale_name }}
-                    </a>
-                    @endforeach
-                </div>
-            </li>
-
             <li class="nav-item dropdown">
                 <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar avatar-md">

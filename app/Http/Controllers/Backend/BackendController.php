@@ -51,8 +51,6 @@ class BackendController extends Controller
         $module_name = $this->module_name;
         
         $data = [
-            "pages"     => $this->module_model_page::latest()->paginate(),
-            "posts"     => $this->module_model_post::latest()->paginate(),
             "users"     => $this->module_model_user::latest()->paginate(),
         ];
 

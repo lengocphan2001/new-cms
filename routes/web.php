@@ -116,6 +116,29 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin'
     $controller_name = 'RolesController';
     Route::resource("{$module_name}", "{$controller_name}");
 
+
+    /*
+    *
+    *  Project Routes
+    *
+    * ---------------------------------------------------------------------
+    */
+    $module_name = 'projects';
+    $controller_name = 'ProjectController';
+    Route::resource("{$module_name}", "{$controller_name}");
+
+
+    /*
+    *
+    *  Group Routes
+    *
+    * ---------------------------------------------------------------------
+    */
+    $module_name = 'groups';
+    $controller_name = 'GroupController';
+    // Route::resource("{$module_name}", "{$controller_name}");
+    Route::get("{$module_name}/index_data", ['as' => "{$module_name}.index_data", 'uses' => "{$controller_name}@index_data"]);
+
     /*
     *
     *  Users Routes

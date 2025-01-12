@@ -28,16 +28,57 @@ class GenerateMenus
                 'class' => 'nav-link',
             ]);
 
-
             /**
-             * Separator: Access Management
+             * Don hang
              */ 
-            // $menu->add(__('Management'), [
-            //     'class' => 'nav-title',
-            // ])->data([
-            //     'order' => 50,
-            //     'permission' => ['edit_settings', 'view_backups', 'view_users', 'view_roles', 'view_logs'],
-            // ]);
+            $accessControl = $menu->add('<i class="nav-icon fa-solid fa-user-gear"></i> '. 'Don hang' , [
+                'class' => 'nav-group',
+            ])->data([
+                'order' => 2,
+                'activematches' => [
+                    'admin/projects*',
+                ],
+                'permission' => ['view_projects'],
+            ]);
+            $accessControl->link->attr([
+                'class' => 'nav-link nav-group-toggle',
+                'href' => '#',
+            ]);
+            // Submenu: List
+            $accessControl->add('<i class="nav-icon fa-solid fa-user-group"></i> '. 'Danh sach don hang', [
+                'route' => 'backend.projects.index',
+                'class' => 'nav-item',
+            ])->data([
+                'order' => 3,
+                'activematches' => 'admin/projects*',
+                'permission' => ['view_projects'],
+            ])->link->attr([
+                'class' => 'nav-link',
+            ]);
+
+            // Submenu: Add project
+            $accessControl->add('<i class="nav-icon fa-solid fa-user-shield"></i> ' . 'Them don hang', [
+                'route' => 'backend.projects.store',
+                'class' => 'nav-item',
+            ])->data([
+                'order' => 4,
+                'activematches' => 'admin/projects*',
+                'permission' => ['add_projects'],
+            ])->link->attr([
+                'class' => 'nav-link',
+            ]);
+            
+
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'To san xuat', [
+                'route' => 'backend.groups.index',
+                'class' => 'nav-item',
+            ])->data([
+                'order' => 5,
+                'activematches' => 'admin/groups*',
+                'permission' => ['view_groups'],
+            ])->link->attr([
+                'class' => 'nav-link',
+            ]);
 
             /**
              * Settings
@@ -46,7 +87,7 @@ class GenerateMenus
                 'route' => 'backend.settings',
                 'class' => 'nav-item',
             ])->data([
-                'order' => 70,
+                'order' => 200,
                 'activematches' => 'admin/settings*',
                 'permission' => ['edit_settings'],
             ])->link->attr([
@@ -81,6 +122,7 @@ class GenerateMenus
             ])->link->attr([
                 'class' => 'nav-link',
             ]);
+
             // Submenu: Roles
             $accessControl->add('<i class="nav-icon fa-solid fa-user-shield"></i> '.__('Roles'), [
                 'route' => 'backend.roles.index',
@@ -89,34 +131,6 @@ class GenerateMenus
                 'order' => 82,
                 'activematches' => 'admin/roles*',
                 'permission' => ['view_roles'],
-            ])->link->attr([
-                'class' => 'nav-link',
-            ]);
-
-            /**
-             * Notifications
-             */ 
-            $menu->add('<i class="nav-icon fas fa-bell"></i> '.__('Notifications'), [
-                'route' => 'backend.notifications.index',
-                'class' => 'nav-item',
-            ])->data([
-                'order' => 90,
-                'activematches' => 'admin/notifications*',
-                'permission' => [],
-            ])->link->attr([
-                'class' => 'nav-link',
-            ]);
-
-            /**
-             * Backup
-             */ 
-            $menu->add('<i class="nav-icon fas fa-archive"></i> '.__('Backups'), [
-                'route' => 'backend.backups.index',
-                'class' => 'nav-item',
-            ])->data([
-                'order' => 100,
-                'activematches' => 'admin/backups*',
-                'permission' => ['view_backups'],
             ])->link->attr([
                 'class' => 'nav-link',
             ]);
@@ -137,6 +151,7 @@ class GenerateMenus
                 'class' => 'nav-link nav-group-toggle',
                 'href' => '#',
             ]);
+
             // Submenu: Log Viewer Dashboard
             $accessControl->add('<i class="nav-icon fa-solid fa-list"></i> '.__('Logs dashboard'), [
                 'route' => 'log-viewer::dashboard',

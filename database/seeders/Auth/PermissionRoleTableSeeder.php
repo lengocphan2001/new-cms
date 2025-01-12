@@ -40,21 +40,6 @@ class PermissionRoleTableSeeder extends Seeder
             Permission::firstOrCreate(['name' => $perms]);
         }
 
-        Artisan::call('auth:permission', [
-            'name' => 'posts',
-        ]);
-
-        Artisan::call('auth:permission', [
-            'name' => 'categories',
-        ]);
-
-        Artisan::call('auth:permission', [
-            'name' => 'tags',
-        ]);
-        
-        Artisan::call('auth:permission', [
-            'name' => 'comments',
-        ]);
 
         // Assign Permissions to Roles
         $admin->givePermissionTo(Permission::all());

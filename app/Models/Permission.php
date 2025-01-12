@@ -28,6 +28,18 @@ class Permission extends \Spatie\Permission\Models\Permission
             'create_backups',
             'download_backups',
             'delete_backups',
+
+
+            'view_projects',
+            'add_projects',
+            'edit_projects',
+            'delete_projects',
+            'restore_projects',
+
+            'view_groups',
+            'add_groups',
+            'edit_groups',
+            'delete_groups',
         ];
     }
 
