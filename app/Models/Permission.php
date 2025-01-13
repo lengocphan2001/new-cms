@@ -40,6 +40,23 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add_groups',
             'edit_groups',
             'delete_groups',
+
+            'view_stages',
+            'add_stages',
+            'edit_stages',
+            'delete_stages',
+
+            'view_products',
+            'add_products',
+            'edit_products',
+            'delete_products',
+
+            'view_stage_groups',
+            'add_stage_groups',
+            'edit_stage_groups',
+            'delete_stage_groups',
+
+
         ];
     }
 

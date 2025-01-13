@@ -45,7 +45,7 @@ class PermissionRoleTableSeeder extends Seeder
         $admin->givePermissionTo(Permission::all());
         $manager->givePermissionTo('view_backend');
         $executive->givePermissionTo('view_backend');
-
+        
         Schema::enableForeignKeyConstraints();
     }
 }

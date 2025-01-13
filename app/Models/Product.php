@@ -11,9 +11,25 @@ class Product extends Model
 
 
     protected $fillable = [
-        "key",
-        "name",
-        "price",
-        "quantity"
+        'key',
+        'name',
+        'project_id',
+        'price',
+        'quantity',
+        'group_management',
+        'number_of_employees',
+        'time_to_complete',
+        'time_each_employee',
+        'average_productivity',
+        'average_productivity_each_employee',
+        'total_time'
     ] ;
+
+    public function project() {
+        return $this->belongsTo(Project::class, 'project_id');
+    }
+
+    public function group() {
+        return $this->belongsTo(Group::class,'group_management');
+    }
 }

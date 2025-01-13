@@ -67,13 +67,66 @@ class GenerateMenus
             ])->link->attr([
                 'class' => 'nav-link',
             ]);
+
+
+            // san pham
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'San pham', [
+                'route' => 'backend.products.index',
+                'class' => 'nav-item',
+            ])->data([
+                'order' => 5,
+                'activematches' => 'admin/products*',
+                'permission' => ['view_products'],
+            ])->link->attr([
+                'class' => 'nav-link',
+            ]);
             
 
+            // group
             $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'To san xuat', [
                 'route' => 'backend.groups.index',
                 'class' => 'nav-item',
             ])->data([
-                'order' => 5,
+                'order' => 6,
+                'activematches' => 'admin/groups*',
+                'permission' => ['view_groups'],
+            ])->link->attr([
+                'class' => 'nav-link',
+            ]);
+
+
+            // cong doan
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Cong doan', [
+                'route' => 'backend.stages.index',
+                'class' => 'nav-item',
+            ])->data([
+                'order' => 7,
+                'activematches' => 'admin/stages*',
+                'permission' => ['view_stages'],
+            ])->link->attr([
+                'class' => 'nav-link',
+            ]);
+
+
+            // nhom cong doan
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Nhom cong doan', [
+                'route' => 'backend.stage_groups.index',
+                'class' => 'nav-item',
+            ])->data([
+                'order' => 8,
+                'activematches' => 'admin/stage_groups*',
+                'permission' => ['view_stage_groups'],
+            ])->link->attr([
+                'class' => 'nav-link',
+            ]);
+
+
+            // thong ke luong
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Thong ke luong', [
+                'route' => 'backend.groups.index',
+                'class' => 'nav-item',
+            ])->data([
+                'order' => 9,
                 'activematches' => 'admin/groups*',
                 'permission' => ['view_groups'],
             ])->link->attr([

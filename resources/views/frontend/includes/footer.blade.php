@@ -40,14 +40,6 @@
                 </a>
             </div>
 
-            <nav class="relative flex flex-wrap justify-center gap-8 p-4 text-sm font-bold">
-                <a href="{{ route('frontend.categories.index') }}" class="text-gray-600 border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
-                    {{__('Categories')}}
-                </a>
-                <a href="{{ route('frontend.tags.index') }}" class="text-gray-600 border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
-                    {{__('Tags')}}
-                </a>
-            </nav>
 
             <p class="text-xs font-medium">
                 &copy; {{ app_name() }}, {!! setting('footer_text') !!}

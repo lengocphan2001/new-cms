@@ -124,6 +124,44 @@ return [
                 'updated_at' => 'Cập nhật vào lúc',
             ],
         ],
+        'products' => [
+            'index' => [
+                'action' => 'Danh sách',
+                'title' => 'San pham',
+                'sub-title' => 'Quản lý san pham',
+            ],
+            'show' => [
+                'action' => 'Hiển thị',
+                'title' => 'san pham',
+                'sub-title' => 'Quản lý san pham',
+            ],
+            'edit' => [
+                'action' => 'Chỉnh sửa',
+                'title' => 'san pham',
+                'sub-title' => 'Quản lý san pham',
+            ],
+            'create' => [
+                'action' => 'Tạo mới',
+                'title' => 'san pham',
+                'sub-title' => 'Quản lý san pham',
+            ],
+            'fields' => [
+                'stt' => 'So thu tu',
+                'name' => 'Tên san pham',
+                'project_id' => 'Don hang',
+                'price' => 'Don gia',
+                'quantity' => 'So luong',
+                'group_management' => 'Nhom san xuat',
+                'number_of_employees' => 'So luong lao dong',
+                'time_to_complete' => 'Thoi gian hoan thanh 1 SP',
+                'time_each_employee' => 'Thoi gian hoan thanh cua nhan vien',
+                'average_productivity' => 'Nang suat binh quan',
+                'average_productivity_each_employee' => 'Nang suat cua nhan vien',
+                'total_time' => 'Tong thoi gian',
+                'created_at' => 'Tạo vào lúc',
+                'updated_at' => 'Cập nhật vào lúc',
+            ],
+        ],
         'groups' => [
             'index' => [
                 'action' => 'Danh sách',
@@ -148,7 +186,69 @@ return [
             ],
             'fields' => [
                 'stt' => 'So thu tu',
-                'name' => 'Tên',
+                'name' => 'Tên to san xuat',
+                'created_at' => 'Tạo vào lúc',
+                'updated_at' => 'Cập nhật vào lúc',
+            ],
+        ],
+        'stages' => [
+            'index' => [
+                'action' => 'Danh sách',
+                'title' => 'Cong doan',
+                'sub-title' => 'Quản lý cong doan',
+            ],
+            'show' => [
+                'action' => 'Hiển thị',
+                'title' => 'Cong doan',
+                'sub-title' => 'Quản lý cong doan',
+            ],
+            'edit' => [
+                'action' => 'Chỉnh sửa',
+                'title' => 'Cong doan',
+                'sub-title' => 'Quản lý cong doan',
+            ],
+            'create' => [
+                'action' => 'Tạo mới',
+                'title' => 'Cong doan',
+                'sub-title' => 'Quản lý cong doan',
+            ],
+            'fields' => [
+                'stt' => 'So thu tu',
+                'name' => 'Tên cong doan',
+                'group_stage' => 'Nhom cong doan',
+                'machine_type' => 'Loai may',
+                'price' => 'Don gia',
+                'time_to_complete' => 'Thoi gian chuan',
+                'number_of_employee' => 'So luong nhan vien',
+                'created_at' => 'Tạo vào lúc',
+                'updated_at' => 'Cập nhật vào lúc',
+            ],
+        ],
+        'stage_groups' => [
+            'index' => [
+                'action' => 'Danh sách',
+                'title' => 'Nhom cong doan',
+                'sub-title' => 'Quản lý nhom cong doan',
+            ],
+            'show' => [
+                'action' => 'Hiển thị',
+                'title' => 'Nhom cong doan',
+                'sub-title' => 'Quản lý nhom cong doan',
+                'profile' => 'Hồ sơ',
+            ],
+            'edit' => [
+                'action' => 'Chỉnh sửa',
+                'title' => 'Nhom cong doan',
+                'sub-title' => 'Quản lý nhom cong doan',
+            ],
+            'create' => [
+                'action' => 'Tạo mới',
+                'title' => 'Nhom cong doan',
+                'sub-title' => 'Quản lý nhom cong doan',
+            ],
+            'fields' => [
+                'stt' => 'So thu tu',
+                'name' => 'Tên nhom cong doan',
                 'created_at' => 'Tạo vào lúc',
                 'updated_at' => 'Cập nhật vào lúc',
             ],

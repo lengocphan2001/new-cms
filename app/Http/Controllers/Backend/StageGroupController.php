@@ -3,17 +3,68 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Group;
+use App\Models\Permission;
 use App\Models\StageGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+use Star\DataTables\Facades\DataTables;
+use Star\Flash\Flash;
 
 class StageGroupController extends Controller
 {
+
+    public $module_title;
+
+    public $module_name;
+
+    public $module_path;
+
+    public $module_icon;
+
+    public $module_model;
+
+    public function __construct()
+    {
+        // Page Title
+        $this->module_title = 'Nhom cong doan';
+
+        // module name
+        $this->module_name = 'stage_groups';
+
+        // directory path of the module
+        $this->module_path = 'stage_groups';
+
+        // module icon
+        $this->module_icon = 'fa-solid fa-user-shield';
+
+        // module model name, path
+        $this->module_model = "App\Models\StageGroup";
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_action = 'List';
+        $module_name_singular = Str::singular($module_name);
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
+        
+        $$module_name = $module_model::paginate();
+
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return view(
+            "backend.{$module_path}.index",
+            compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action', 'page_heading', 'title')
+        );
     }
 
     /**
@@ -21,7 +72,20 @@ class StageGroupController extends Controller
      */
     public function create()
     {
-        //
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Create';
+
+        $permissions = Permission::select('name', 'id')->get();
+
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return view("backend.{$module_name}.create", compact('module_title', 'module_name', 'module_icon', 'module_action', 'permissions'));
     }
 
     /**
@@ -29,7 +93,21 @@ class StageGroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Store';
+
+        $$module_name_singular = StageGroup::create($request->all());
+
+
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return redirect("admin/{$module_name}")->with('flash_success', "{$module_name} added!");
     }
 
     /**
@@ -37,7 +115,23 @@ class StageGroupController extends Controller
      */
     public function show(StageGroup $stageGroup)
     {
-        //
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Show';
+
+        $$module_name_singular = $stageGroup;
+
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return view(
+            "backend.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
+        );
     }
 
     /**
@@ -45,7 +139,28 @@ class StageGroupController extends Controller
      */
     public function edit(StageGroup $stageGroup)
     {
-        //
+        if (! auth()->user()->can('edit_stage_groups')) {
+            abort(404);
+        }
+
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Edit';
+
+        $$module_name_singular = $stageGroup;
+
+
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return view(
+            "backend.{$module_name}.edit",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
+        );
     }
 
     /**
@@ -53,7 +168,28 @@ class StageGroupController extends Controller
      */
     public function update(Request $request, StageGroup $stageGroup)
     {
-        //
+        if (! auth()->user()->can('edit_stage_groups')) {
+            abort(404);
+        }
+
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Update';
+
+        $$module_name_singular = $stageGroup;
+
+        $stageGroup->update($request->all());
+
+        Flash::success("<i class='fas fa-check'></i> Updated Successfully")->important();
+
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return redirect("admin/{$module_name}");
     }
 
     /**
@@ -61,6 +197,27 @@ class StageGroupController extends Controller
      */
     public function destroy(StageGroup $stageGroup)
     {
-        //
+        if (! auth()->user()->can('delete_stage_groups')) {
+            abort(404);
+        }
+
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Update';
+
+        $$module_name_singular = $stageGroup;
+
+        $group->delete();
+
+        Flash::success("<i class='fas fa-check'></i> Xoa thanh cong")->important();
+
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return redirect("admin/{$module_name}");
     }
 }

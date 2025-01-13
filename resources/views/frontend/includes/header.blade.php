@@ -27,19 +27,6 @@
                         <img class="block h-10 w-auto" src="{{asset('images/logo.svg')}}" alt="{{ app_name() }}">
                     </a>
                 </div>
-                <div class="hidden sm:block sm:ml-6">
-                    <div class="frontend-main-menu flex space-x-4">
-                        <a href="{{ route('frontend.index') }}" class="{{ Request::route()->getName() == 'frontend.index' ? 'active ' : ''}}text-gray-600 border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
-                            {{__('Home')}}
-                        </a>
-                        <a href="{{ route('frontend.pages.index') }}" class="{{ Request::route()->getName() == 'frontend.pages.index' ? 'active ' : ''}}text-gray-600 border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
-                            {{__('Pages')}}
-                        </a>
-                        <a href="{{ route('frontend.posts.index') }}" class="{{ Request::route()->getName() == 'frontend.posts.index' ? 'active ' : ''}}text-gray-600 border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
-                            {{__('Article')}}
-                        </a>
-                    </div>
-                </div>
             </div>
 
             <!-- locale & user -->
@@ -174,12 +161,7 @@
             <a href="/" class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">
                 {{__('Home')}}
             </a> 
-            <a href="{{ route('frontend.pages.index') }}" class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">
-                {{__('Pages')}}
-            </a>    
-            <a href="{{ route('frontend.posts.index') }}" class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">
-                {{__('Posts')}}
-            </a>
+            
 
             @can('view_backend')
             <a href='{{ route("backend.dashboard") }}' class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium border" role="menuitem">

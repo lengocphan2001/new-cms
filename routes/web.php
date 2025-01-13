@@ -136,8 +136,20 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin'
     */
     $module_name = 'groups';
     $controller_name = 'GroupController';
-    // Route::resource("{$module_name}", "{$controller_name}");
-    Route::get("{$module_name}/index_data", ['as' => "{$module_name}.index_data", 'uses' => "{$controller_name}@index_data"]);
+    Route::resource("{$module_name}", "{$controller_name}");
+
+
+    $module_name = 'stages';
+    $controller_name = 'StageController';
+    Route::resource("{$module_name}", "{$controller_name}");
+
+    $module_name = 'stage_groups';
+    $controller_name = 'StageGroupController';
+    Route::resource("{$module_name}", "{$controller_name}");
+
+    $module_name = 'products';
+    $controller_name = 'ProductController';
+    Route::resource("{$module_name}", "{$controller_name}");
 
     /*
     *
