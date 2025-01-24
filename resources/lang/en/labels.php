@@ -124,6 +124,37 @@ return [
                 'updated_at' => 'Cập nhật vào lúc',
             ],
         ],
+        'projects' => [
+            'index' => [
+                'action' => 'Danh sách',
+                'title' => 'Don hang',
+                'sub-title' => 'Quản lý don hang',
+            ],
+            'show' => [
+                'action' => 'Hiển thị',
+                'title' => 'Don hang',
+                'sub-title' => 'Quản lý don hang',
+            ],
+            'edit' => [
+                'action' => 'Chỉnh sửa',
+                'title' => 'Don hang',
+                'sub-title' => 'Quản lý don hang',
+            ],
+            'create' => [
+                'action' => 'Tạo mới',
+                'title' => 'Don hang',
+                'sub-title' => 'Quản lý don hang',
+            ],
+            'fields' => [
+                'stt' => 'So thu tu',
+                'name' => 'Tên don hang',
+                'customer' => 'Ten khach hang',
+                'start_date' => 'Ngay bat dau',
+                'end_date' => 'Ngay ket thuc',
+                'created_at' => 'Tạo vào lúc',
+                'updated_at' => 'Cập nhật vào lúc',
+            ],
+        ],
         'products' => [
             'index' => [
                 'action' => 'Danh sách',

@@ -31,13 +31,13 @@
         <div class="row mt-4">
             <div class="col">
 
-                {{ html()->form('POST', route('backend.roles.store'))->class('form-horizontal')->open() }}
+                {{ html()->form('POST', route('backend.projects.store'))->class('form-horizontal')->open() }}
                 {{ csrf_field() }}
 
                 <div class="row mb-3">
                     <?php
                     $field_name = 'name';
-                    $field_label = __('labels.backend.roles.fields.name');
+                    $field_label = __('labels.backend.projects.fields.name');
                     $field_placeholder = $field_label;
                     $required = "required";
                     ?>
@@ -56,9 +56,17 @@
                 <div class="row mb-3">
                     <?php
                     $field_name = 'name';
-                    $field_label = __("Abilities");
                     $field_placeholder = $field_label;
                     $required = "";
+                    ?>
+                </div>
+
+                <div class="row mb-3">
+                    <?php
+                    $field_name = 'customer';
+                    $field_label = __('labels.backend.projects.fields.customer');
+                    $field_placeholder = $field_label;
+                    $required = "required";
                     ?>
                     <div class="col-12 col-sm-2">
                         <div class="form-group">
@@ -67,19 +75,73 @@
                     </div>
                     <div class="col-12 col-sm-10">
                         <div class="form-group">
-                            {{ __("List of permissions") }}
-                            <hr>
-                            @if ($permissions->count())
-                            @foreach($permissions as $permission)
-                            <div class="checkbox">
-                                {{ html()->label(html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)->id('permission-'.$permission->id) . ' ' . $permission->name)->for('permission-'.$permission->id) }}
-                            </div>
-                            @endforeach
-                            @endif
+                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                 </div>
 
+                <div class="row mb-3">
+                    <?php
+                    $field_name = 'customer';
+                    $field_placeholder = $field_label;
+                    $required = "";
+                    ?>
+                </div>
+                
+                <div class="row mb-3">
+                    <?php
+                    $field_name = 'start_date';
+                    $field_label = __('labels.backend.projects.fields.start_date');
+                    $field_placeholder = $field_label;
+                    $required = "required";
+                    ?>
+                    <div class="col-12 col-sm-2">
+                        <div class="form-group">
+                            {{ html()->label($field_label, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-10">
+                        <div class="form-group">
+                            {{ html()->date($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <?php
+                    $field_name = 'start_date';
+                    $field_placeholder = $field_label;
+                    $required = "";
+                    ?>
+                </div>
+
+                <div class="row mb-3">
+                    <?php
+                    $field_name = 'end_date';
+                    $field_label = __('labels.backend.projects.fields.end_date');
+                    $field_placeholder = $field_label;
+                    $required = "required";
+                    ?>
+                    <div class="col-12 col-sm-2">
+                        <div class="form-group">
+                            {{ html()->label($field_label, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-10">
+                        <div class="form-group">
+                            {{ html()->date($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <?php
+                    $field_name = 'end_date';
+                    $field_placeholder = $field_label;
+                    $required = "";
+                    ?>
+                </div>
+                
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">

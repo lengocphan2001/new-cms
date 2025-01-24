@@ -27,8 +27,11 @@
                 <table class="table table-hover table-responsive-sm">
                     <thead>
                         <tr>
+                            <th>{{ __("labels.backend.$module_name.fields.stt") }}</th>
                             <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
-                            <th>{{ __("labels.backend.$module_name.fields.permissions") }}</th>
+                            <th>{{ __("labels.backend.$module_name.fields.customer") }}</th>
+                            <th>{{ __("labels.backend.$module_name.fields.start_date") }}</th>
+                            <th>{{ __("labels.backend.$module_name.fields.end_date") }}</th>
                             <th class="text-end">{{ __("labels.backend.action") }}</th>
                         </tr>
                     </thead>
@@ -37,21 +40,38 @@
                         <tr>
                             <td>
                                 <strong>
+                                    {{ $loop->index + 1}}
+                                </strong>
+                            </td>
+                            <td>
+                                <strong>
                                     {{ $module_name_singular->name }}
                                 </strong>
                             </td>
                             <td>
-                                <ul>
-                                    @foreach ($module_name_singular->permissions as $permission)
-                                    <li>{{ $permission->name }}</li>
-                                    @endforeach
-                                </ul>
+                                <strong>
+                                    {{ $module_name_singular->customer }}
+                                </strong>
+                            </td>
+                            <td>
+                                <strong>
+                                    {{ $module_name_singular->start_date }}
+                                </strong>
+                            </td>
+                            <td>
+                                <strong>
+                                    {{ $module_name_singular->end_date }}
+                                </strong>
                             </td>
                             <td class="text-end">
+                                
                                 @can('edit_'.$module_name)
                                 <x-buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" small="true" />
                                 @endcan
                                 <x-buttons.show route='{!!route("backend.$module_name.show", $module_name_singular)!!}' title="{{__('Show')}} {{ ucwords(Str::singular($module_name)) }}" small="true" />
+                                @can('delete_'.$module_name)
+                                <a href='{{route("backend.$module_name.destroy", $module_name_singular)}}' class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Delete')}}"><i class="fas fa-trash-alt"></i></a>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach

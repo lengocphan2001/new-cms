@@ -210,7 +210,7 @@ class GroupController extends Controller
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
 
-        $module_action = 'Update';
+        $module_action = 'Delete';
 
         $$module_name_singular = $group;
 

@@ -48,9 +48,15 @@
                                     {{ $module_name_singular->project->name }}
                                 </strong>
                             </td>
+                            
                             <td>
                                 <strong>
                                     {{ $module_name_singular->price }}
+                                </strong>
+                            </td>
+                            <td>
+                                <strong>
+                                    {{ $module_name_singular->quantity }}
                                 </strong>
                             </td>
                             <td>
