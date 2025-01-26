@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StageUser;
+use App\Models\StageProduct;
 use Illuminate\Http\Request;
 
-class StageUserController extends Controller
+class StageProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class StageUserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(StageUser $stageUser)
+    public function show(StageProduct $stageProduct)
     {
         //
     }
@@ -42,7 +42,7 @@ class StageUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(StageUser $stageUser)
+    public function edit(StageProduct $stageProduct)
     {
         //
     }
@@ -50,7 +50,7 @@ class StageUserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, StageUser $stageUser)
+    public function update(Request $request, StageProduct $stageProduct)
     {
         //
     }
@@ -58,7 +58,7 @@ class StageUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StageUser $stageUser)
+    public function destroy(StageProduct $stageProduct)
     {
         //
     }

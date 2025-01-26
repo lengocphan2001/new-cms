@@ -5,15 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StageUser extends Model
+class StageProduct extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'product_id',
-        'stage_id',
-        'user_id',
-        'group_stage_id',
-        'total'
+        'stage_ids',
+        'group_stage_ids'
+    ];
+
+    protected $casts = [
+        'stage_ids' => 'array',
+        'group_stage_ids' => 'array'
     ];
 }

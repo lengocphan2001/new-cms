@@ -12,4 +12,8 @@ class StageGroup extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function stages() {
+        return $this->hasMany(Stage::class, 'group_stage', 'id');
+    }
 }

@@ -31,7 +31,7 @@ class GenerateMenus
             /**
              * Don hang
              */ 
-            $accessControl = $menu->add('<i class="nav-icon fa-solid fa-user-gear"></i> '. 'Don hang' , [
+            $accessControl = $menu->add('<i class="nav-icon fa-solid fa-user-gear"></i> '. 'Đơn hàng' , [
                 'class' => 'nav-group',
             ])->data([
                 'order' => 2,
@@ -45,7 +45,7 @@ class GenerateMenus
                 'href' => '#',
             ]);
             // Submenu: List
-            $accessControl->add('<i class="nav-icon fa-solid fa-user-group"></i> '. 'Danh sach don hang', [
+            $accessControl->add('<i class="nav-icon fa-solid fa-user-group"></i> '. 'Danh sách đơn hàng', [
                 'route' => 'backend.projects.index',
                 'class' => 'nav-item',
             ])->data([
@@ -57,8 +57,8 @@ class GenerateMenus
             ]);
 
             // Submenu: Add project
-            $accessControl->add('<i class="nav-icon fa-solid fa-user-shield"></i> ' . 'Them don hang', [
-                'route' => 'backend.projects.store',
+            $accessControl->add('<i class="nav-icon fa-solid fa-user-shield"></i> ' . 'Thêm đơn hàng', [
+                'route' => 'backend.projects.create',
                 'class' => 'nav-item',
             ])->data([
                 'order' => 4,
@@ -70,7 +70,7 @@ class GenerateMenus
 
 
             // san pham
-            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'San pham', [
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Sản phẩm', [
                 'route' => 'backend.products.index',
                 'class' => 'nav-item',
             ])->data([
@@ -80,10 +80,23 @@ class GenerateMenus
             ])->link->attr([
                 'class' => 'nav-link',
             ]);
+
+
+            // san pham
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Nhân viên', [
+                'route' => 'backend.employees.index',
+                'class' => 'nav-item',
+            ])->data([
+                'order' => 5,
+                'activematches' => 'admin/employees*',
+                'permission' => ['view_employees'],
+            ])->link->attr([
+                'class' => 'nav-link',
+            ]);
             
 
             // group
-            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'To san xuat', [
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Tổ sản xuất', [
                 'route' => 'backend.groups.index',
                 'class' => 'nav-item',
             ])->data([
@@ -96,7 +109,7 @@ class GenerateMenus
 
 
             // cong doan
-            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Cong doan', [
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Công đoạn', [
                 'route' => 'backend.stages.index',
                 'class' => 'nav-item',
             ])->data([
@@ -109,7 +122,7 @@ class GenerateMenus
 
 
             // nhom cong doan
-            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Nhom cong doan', [
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Nhóm công đoạn', [
                 'route' => 'backend.stage_groups.index',
                 'class' => 'nav-item',
             ])->data([
@@ -122,7 +135,7 @@ class GenerateMenus
 
 
             // thong ke luong
-            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Thong ke luong', [
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Thống kê lương', [
                 'route' => 'backend.groups.index',
                 'class' => 'nav-item',
             ])->data([

@@ -35,27 +35,6 @@
                             <td>{{ $$module_name_singular->name }}</td>
                         </tr>
 
-                        <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.group_stage") }}</th>
-                            <td>{{ $$module_name_singular->group->name }}</td>
-                        </tr>
-
-
-                        <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.price") }}</th>
-                            <td>{{ $$module_name_singular->price }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.time_to_complete") }}</th>
-                            <td>{{ $$module_name_singular->time_to_complete . '(s)' }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.number_of_employee") }}</th>
-                            <td>{{ $$module_name_singular->number_of_employees }}</td>
-                        </tr>
-
 
                         <tr>
                             <th>{{ __("labels.backend.$module_name.fields.created_at") }}</th>

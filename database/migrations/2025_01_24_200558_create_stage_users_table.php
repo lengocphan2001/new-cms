@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('stage_users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('stage_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('product_id')->references(columns: 'id')->on('products')->onDelete('cascade');
+            $table->foreign('stage_id')->references(columns: 'id')->on('stages')->onDelete('cascade');
+            $table->foreign('user_id')->references(columns: 'id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

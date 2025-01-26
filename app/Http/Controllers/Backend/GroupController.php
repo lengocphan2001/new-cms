@@ -216,7 +216,7 @@ class GroupController extends Controller
 
         $group->delete();
 
-        Flash::success("<i class='fas fa-check'></i> Xoa thanh cong")->important();
+        Flash::success("<i class='fas fa-check'></i> Xóa thành công")->important();
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 

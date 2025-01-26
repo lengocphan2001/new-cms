@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\EmployeeController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
@@ -147,9 +149,22 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin'
     $controller_name = 'StageGroupController';
     Route::resource("{$module_name}", "{$controller_name}");
 
+    $module_name = 'stage_users';
+    $controller_name = 'StageUserController';
+    Route::resource("{$module_name}", "{$controller_name}");
+
+    $module_name = 'employees';
+    $controller_name = 'EmployeeController';
+    Route::resource("{$module_name}", "{$controller_name}");
+    Route::get('/employees/{employee}/assign_stages', [EmployeeController::class, 'assignStages'])->name('employees.assign_stages');
+    Route::post('/employees/{employee}/assign_stages', [EmployeeController::class, 'assign'])->name('employees.post_assign_stages');
+
     $module_name = 'products';
     $controller_name = 'ProductController';
     Route::resource("{$module_name}", "{$controller_name}");
+    Route::get('/products/{product}/assign_stages', [ProductController::class, 'assignStages'])->name('products.assign_stages');
+    Route::post('/products/{product}/assign_stages', [ProductController::class, 'assign'])->name('products.post_assign_stages');
+
 
     /*
     *

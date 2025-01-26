@@ -7,6 +7,7 @@ use App\Models\Permission;
 use App\Models\Product;
 use App\Models\Stage;
 use App\Models\StageGroup;
+use App\Models\StageProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -217,10 +218,46 @@ class ProductController extends Controller
 
         $stage->delete();
 
-        Flash::success("<i class='fas fa-check'></i> Xoa thanh cong")->important();
+        Flash::success("<i class='fas fa-check'></i> Xóa thành công")->important();
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return redirect("admin/{$module_name}");
+    }
+
+
+    public function assignStages(Product $product) {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $$module_name_singular = $product;
+        $module_action = 'Assign stages';
+        $stage_groups = StageGroup::all();
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+        return view("backend.{$module_name}.assign_stage", compact('module_title', 'stage_groups', 'module_name', 'module_icon', 'module_action', 'stage_groups', 'module_name_singular', "{$module_name_singular}"));
+    }
+
+
+    public function assign(Product $product, Request $request) {
+        $stage_product = StageProduct::create([
+            'product_id' => $product->id,
+            'stage_ids' => $request->stages ? $request->stages : [],
+            'group_stage_ids' => $request->stage_groups ? $request->stage_groups : [],
+        ]);
+        
+
+        $module_name = $this->module_name;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Assign stages';
+
+        $$module_name_singular = $product;
+
+        return redirect("admin/{$module_name}");
+
     }
 }

@@ -27,11 +27,8 @@
                 <table class="table table-hover table-responsive-sm">
                     <thead>
                         <tr>
+                            <th>{{ __("labels.backend.$module_name.fields.stt") }}</th>
                             <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
-                            <th>{{ __("labels.backend.$module_name.fields.project_id") }}</th>
-                            <th>{{ __("labels.backend.$module_name.fields.price") }}</th>
-                            <th>{{ __("labels.backend.$module_name.fields.quantity") }}</th>
-                            <th>{{ __("labels.backend.$module_name.fields.group_management") }}</th>
                             <th class="text-end">{{ __("labels.backend.action") }}</th>
                         </tr>
                     </thead>
@@ -40,33 +37,17 @@
                         <tr>
                             <td>
                                 <strong>
+                                    {{ $loop->index + 1}}
+                                </strong>
+                            </td>
+                            <td>
+                                <strong>
                                     {{ $module_name_singular->name }}
                                 </strong>
                             </td>
-                            <td>
-                                <strong>
-                                    {{ $module_name_singular->project->name }}
-                                </strong>
-                            </td>
-                            
-                            <td>
-                                <strong>
-                                    {{ $module_name_singular->price }}
-                                </strong>
-                            </td>
-                            <td>
-                                <strong>
-                                    {{ $module_name_singular->quantity }}
-                                </strong>
-                            </td>
-                            <td>
-                                <strong>
-                                    {{ $module_name_singular->group->name }}
-                                </strong>
-                            </td>
                             <td class="text-end">
-                                @can('assgin_stages')
-                                <x-buttons.edit route='{!!route("backend.$module_name.assign_stages", $module_name_singular)!!}' title="{{__('Edit')}} " small="true" />
+                                @can('assign_user_stages'.$module_name)
+                                <x-buttons.edit route='{!!route("backend.$module_name.assign_stages", $module_name_singular)!!}' title="{{__('Assign')}} " small="true" />
                                 @endcan
                                 @can('edit_'.$module_name)
                                 <x-buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} " small="true" />
