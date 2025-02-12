@@ -21,30 +21,14 @@
                 <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
             </x-slot>
         </x-backend.section-header>
-        <form method="GET" action="{{ route("backend.$module_name.index") }}">
-            <div class="row mb-3 mt-3">
-                <div class="col-md-4">
-                    <input type="text" name="search_name" class="form-control" placeholder="{{ __('Search by Name') }}" value="{{ request('search_name') }}">
-                </div>
-                <div class="col-md-4">
-                    <input type="date" name="search_date" class="form-control" value="{{ request('search_date') }}">
-                </div>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary">{{ __('Search') }}</button>
-                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary">{{ __('Reset') }}</a>
-                </div>
-            </div>
-        </form>
+        
         <div class="row mt-4">
             <div class="col">
                 <table class="table table-hover table-responsive-sm">
                     <thead>
                         <tr>
                             <th>{{ __("labels.backend.$module_name.fields.stt") }}</th>
-                            <th>{{ __("labels.backend.$module_name.fields.product") }}</th>
-                            <th>{{ __("labels.backend.$module_name.fields.stage") }}</th>
-                            <th>{{ __("labels.backend.$module_name.fields.user") }}</th>
-                            <th>{{ __("labels.backend.$module_name.fields.quantity") }}</th>
+                            <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
                             <th class="text-end">{{ __("labels.backend.action") }}</th>
                         </tr>
                     </thead>
@@ -58,22 +42,7 @@
                             </td>
                             <td>
                                 <strong>
-                                    {{ $module_name_singular->product->name }}
-                                </strong>
-                            </td>
-                            <td>
-                                <strong>
-                                    {{ $module_name_singular->stage->name }}
-                                </strong>
-                            </td>
-                            <td>
-                                <strong>
-                                    {{ $module_name_singular->user->name }}
-                                </strong>
-                            </td>
-                            <td>
-                                <strong>
-                                    {{ $module_name_singular->total }}
+                                    {{ $module_name_singular->name }}
                                 </strong>
                             </td>
                             <td class="text-end">

@@ -28,7 +28,7 @@ class StageUserController extends Controller
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Gán công đoạn';
+        $this->module_title = 'San luong';
 
         // module name
         $this->module_name = 'stage_users';

@@ -315,6 +315,37 @@ return [
                 'updated_at' => 'Cập nhật vào lúc',
             ],
         ],
+        'stage_users' => [
+            'index' => [
+                'action' => 'Danh sách',
+                'title' => 'San luong',
+                'sub-title' => 'Quản lý san luong',
+            ],
+            'show' => [
+                'action' => 'Hiển thị',
+                'title' => 'San luong',
+                'sub-title' => 'Quản lý san luong',
+            ],
+            'edit' => [
+                'action' => 'Chỉnh sửa',
+                'title' => 'San luong',
+                'sub-title' => 'Quản lý san luong',
+            ],
+            'create' => [
+                'action' => 'Tạo mới',
+                'title' => 'San luong',
+                'sub-title' => 'Quản lý san luong',
+            ],
+            'fields' => [
+                'stt' => 'Số thứ tự',
+                'product' => 'Tên san pham',
+                'user' => 'Tên nhan vien',
+                'stage' => 'Tên cong doan',
+                'quantity' => 'San luong',
+                'created_at' => 'Tạo vào lúc',
+                'updated_at' => 'Cập nhật vào lúc',
+            ],
+        ],
         'action' => 'Hành động',
         'create' => 'Tạo mới',
         'edit' => 'Chỉnh sửa',

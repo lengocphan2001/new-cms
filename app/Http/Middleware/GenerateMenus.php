@@ -136,12 +136,25 @@ class GenerateMenus
 
             // thong ke luong
             $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Thống kê lương', [
-                'route' => 'backend.groups.index',
+                'route' => 'backend.salaries.index',
                 'class' => 'nav-item',
             ])->data([
                 'order' => 9,
-                'activematches' => 'admin/groups*',
-                'permission' => ['view_groups'],
+                'activematches' => 'admin/salaries*',
+                'permission' => ['view_salaries'],
+            ])->link->attr([
+                'class' => 'nav-link',
+            ]);
+
+
+            // san luong
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Sản lượng', [
+                'route' => 'backend.stage_users.index',
+                'class' => 'nav-item',
+            ])->data([
+                'order' => 9,
+                'activematches' => 'admin/stage_products*',
+                'permission' => ['view_stage_users'],
             ])->link->attr([
                 'class' => 'nav-link',
             ]);
@@ -238,6 +251,7 @@ class GenerateMenus
             ])->link->attr([
                 'class' => 'nav-link',
             ]);
+            
 
             /**
              * Access Permission Check

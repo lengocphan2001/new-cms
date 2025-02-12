@@ -153,6 +153,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin'
     $controller_name = 'StageUserController';
     Route::resource("{$module_name}", "{$controller_name}");
 
+    $module_name = 'salaries';
+    $controller_name = 'SalaryController';
+    Route::resource("{$module_name}", "{$controller_name}");
+
     $module_name = 'employees';
     $controller_name = 'EmployeeController';
     Route::resource("{$module_name}", "{$controller_name}");

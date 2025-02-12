@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Models\StageProduct;
+use App\Http\Controllers\Controller;
+use App\Models\Salary;
 use Illuminate\Http\Request;
 
-class StageProductController extends Controller
+class SalaryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class StageProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(StageProduct $stageProduct)
+    public function show(Salary $salary)
     {
         //
     }
@@ -42,7 +43,7 @@ class StageProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(StageProduct $stageProduct)
+    public function edit(Salary $salary)
     {
         //
     }
@@ -50,7 +51,7 @@ class StageProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, StageProduct $stageProduct)
+    public function update(Request $request, Salary $salary)
     {
         //
     }
@@ -58,7 +59,7 @@ class StageProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StageProduct $stageProduct)
+    public function destroy(Salary $salary)
     {
         //
     }
