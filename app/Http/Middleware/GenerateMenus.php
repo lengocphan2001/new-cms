@@ -251,7 +251,6 @@ class GenerateMenus
             ])->link->attr([
                 'class' => 'nav-link',
             ]);
-            
 
             /**
              * Access Permission Check

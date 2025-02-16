@@ -69,4 +69,25 @@ class Permission extends \Spatie\Permission\Models\Permission
     {
         $this->attributes['name'] = strtolower($value);
     }
+
+
+    public static function userPermissions()
+    {
+        return [
+            'view_projects',
+            
+            'view_groups',
+
+
+            'view_stages',
+
+
+            'view_products',
+
+
+            'view_stage_groups',
+
+
+        ];
+    }
 }

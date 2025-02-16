@@ -66,7 +66,7 @@
                             </td>
                             <td class="text-end">
                                 @can('assgin_stages')
-                                <x-buttons.edit route='{!!route("backend.$module_name.assign_stages", $module_name_singular)!!}' title="{{__('Edit')}} " small="true" />
+                                <x-buttons.assign route='{!!route("backend.$module_name.assign_stages", $module_name_singular)!!}' title="{{__('Chia công đoạn')}} " small="true" />
                                 @endcan
                                 @can('edit_'.$module_name)
                                 <x-buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} " small="true" />
