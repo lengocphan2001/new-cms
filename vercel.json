@@ -14,7 +14,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://new-cms-2025.vercel.app",
+        "APP_URL": "https://new-cms.vercel.app",
         "APP_KEY": "base64:gGGIov9p0THaEWZNlJc//Z9EfJNk8OoF3Jp5B7OzXNQ=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
