@@ -18,7 +18,10 @@
                 @lang(":module_name Management Dashboard", ['module_name'=>__(Str::title($module_name))])
             </x-slot>
             <x-slot name="toolbar">
-                <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
+            @if(auth()->user()->hasRole('super admin'))
+            <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
+            @endif
+                
             </x-slot>
         </x-backend.section-header>
         
@@ -70,13 +73,15 @@
                                 </strong>
                             </td>
                             <td class="text-end">
-                                @can('edit_'.$module_name)
-                                <x-buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} " small="true" />
-                                @endcan
-                                <x-buttons.show route='{!!route("backend.$module_name.show", $module_name_singular)!!}' title="{{__('Show')}} " small="true" />
-                                @can('delete_'.$module_name)
-                                <a href='{{route("backend.$module_name.destroy", $module_name_singular)}}' class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Delete')}}"><i class="fas fa-trash-alt"></i></a>
-                                @endcan
+                            @if(auth()->user()->hasRole('super admin'))
+                            <x-buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} " small="true" />
+                            @endif
+
+                            <x-buttons.show route='{!!route("backend.$module_name.show", $module_name_singular)!!}' title="{{__('Show')}} " small="true" />
+
+                            @if(auth()->user()->hasRole('super admin'))
+                            <a href='{{route("backend.$module_name.destroy", $module_name_singular)}}' class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Delete')}}"><i class="fas fa-trash-alt"></i></a>
+                            @endif
                             </td>
                         </tr>
                         @endforeach

@@ -53,9 +53,10 @@
                                 @endif
 
                                 <x-buttons.show route='{!!route("backend.$module_name.show", $module_name_singular)!!}' title="{{__('Show')}} " small="true" />
-                                @can('delete_'.$module_name)
+
+                                @if(auth()->user()->hasRole('super admin'))
                                 <a href='{{route("backend.$module_name.destroy", $module_name_singular)}}' class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Delete')}}"><i class="fas fa-trash-alt"></i></a>
-                                @endcan
+                                @endif
                             </td>
                         </tr>
                         @endforeach

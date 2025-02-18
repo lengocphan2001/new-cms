@@ -68,16 +68,21 @@
                                 </strong>
                             </td>
                             <td class="text-end">
+                                
+                                @if(auth()->user()->hasRole('super admin'))
                                 @can('assgin_stages')
                                 <x-buttons.assign route='{!!route("backend.$module_name.assign_stages", $module_name_singular)!!}' title="{{__('Chia công đoạn')}} " small="true" />
                                 @endcan
-                                @can('edit_'.$module_name)
+                                @endif
+                                @if(auth()->user()->hasRole('super admin'))
                                 <x-buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} " small="true" />
-                                @endcan
+                                @endif
+
                                 <x-buttons.show route='{!!route("backend.$module_name.show", $module_name_singular)!!}' title="{{__('Show')}} " small="true" />
-                                @can('delete_'.$module_name)
+
+                                @if(auth()->user()->hasRole('super admin'))
                                 <a href='{{route("backend.$module_name.destroy", $module_name_singular)}}' class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Delete')}}"><i class="fas fa-trash-alt"></i></a>
-                                @endcan
+                                @endif
                             </td>
                         </tr>
                         @endforeach

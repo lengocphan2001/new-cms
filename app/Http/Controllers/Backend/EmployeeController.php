@@ -59,7 +59,11 @@ class EmployeeController extends Controller
         $page_heading = ucfirst($module_title);
         $title = $page_heading.' '.ucfirst($module_action);
         
-        $$module_name = $module_model::paginate();
+
+        $$module_name = $module_model::whereHas('roles', function ($query) {
+            $query->where('name', 'user');
+        })->paginate(10);
+
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 

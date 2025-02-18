@@ -56,13 +56,13 @@ class StageUserController extends Controller
         $module_name_singular = Str::singular($module_name);
         $page_heading = ucfirst($module_title);
         $title = $page_heading.' '.ucfirst($module_action);
+
+        if (auth()->user()->hasRole('user'))
         
-        $$module_name = $module_model::paginate();
-
-        if (auth()->user()->hasRole('user')) {
-            $$module_name->where('user_id', auth()->user()->id);
-        }
-
+            $$module_name = $module_model::where('user_id', auth()->user()->id)->paginate(10);
+        else 
+            $$module_name = $module_model::paginate();
+        
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
