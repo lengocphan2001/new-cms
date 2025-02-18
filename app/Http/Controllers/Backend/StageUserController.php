@@ -59,6 +59,10 @@ class StageUserController extends Controller
         
         $$module_name = $module_model::paginate();
 
+        if (auth()->user()->hasRole('user')) {
+            $$module_name->where('user_id', auth()->user()->id);
+        }
+
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
@@ -72,7 +76,26 @@ class StageUserController extends Controller
      */
     public function create()
     {
+
+        if (! auth()->user()->can('add_stage_users')) {
+            abort(404);
+        }
         
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+        $stage_groups = StageGroup::all();
+
+        $module_action = 'Create';
+
+        $permissions = Permission::select('name', 'id')->get();
+
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return view("backend.{$module_name}.create", compact('module_title', 'module_name', 'module_icon', 'module_action', 'permissions', 'stage_groups'));
     }
 
     /**
@@ -80,6 +103,9 @@ class StageUserController extends Controller
      */
     public function store(Request $request)
     {
+        if (! auth()->user()->can('add_stage_users')) {
+            abort(404);
+        }
         
         $stage_user = StageUser::where('product_id', $request->product_id)->where('user_id', Auth::user()->id)->first();
         // dd($stage_user);
@@ -105,7 +131,28 @@ class StageUserController extends Controller
      */
     public function edit(StageUser $stageUser)
     {
-        //
+        if (! auth()->user()->can('edit_stage_users')) {
+            abort(404);
+        }
+
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Edit';
+
+        $$module_name_singular = $stageUser;
+
+
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return view(
+            "backend.{$module_name}.edit",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
+        );
     }
 
     /**
@@ -113,7 +160,28 @@ class StageUserController extends Controller
      */
     public function update(Request $request, StageUser $stageUser)
     {
-        //
+        if (! auth()->user()->can('edit_stage_users')) {
+            abort(404);
+        }
+
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Update';
+
+        $$module_name_singular = $stageUser;
+
+        $stage->update($request->all());
+
+        Flash::success("<i class='fas fa-check'></i> Updated Successfully")->important();
+
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return redirect("admin/{$module_name}");
     }
 
     /**
@@ -121,7 +189,28 @@ class StageUserController extends Controller
      */
     public function destroy(StageUser $stageUser)
     {
-        //
+        if (! auth()->user()->can('delete_stage_users')) {
+            abort(404);
+        }
+
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Update';
+
+        $$module_name_singular = $stageUser;
+
+        $stageUser->delete();
+
+        Flash::success("<i class='fas fa-check'></i> Xóa thành công")->important();
+
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return redirect("admin/{$module_name}");
     }
 
 }

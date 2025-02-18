@@ -55,7 +55,11 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add_stage_groups',
             'edit_stage_groups',
             'delete_stage_groups',
-
+            
+            'view_stage_users',
+            'add_stage_users',
+            'edit_stage_users',
+            'delete_stage_users',
 
         ];
     }
@@ -75,19 +79,14 @@ class Permission extends \Spatie\Permission\Models\Permission
     {
         return [
             'view_projects',
-            
             'view_groups',
-
-
             'view_stages',
-
-
             'view_products',
-
-
             'view_stage_groups',
-
-
+            'view_stage_users',
+            'add_stage_users',
+            'edit_stage_users',
+            'delete_stage_users',
         ];
     }
 }

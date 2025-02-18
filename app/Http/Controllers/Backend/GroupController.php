@@ -48,6 +48,7 @@ class GroupController extends Controller
      */
     public function index()
     {
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -74,6 +75,7 @@ class GroupController extends Controller
      */
     public function create()
     {
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
