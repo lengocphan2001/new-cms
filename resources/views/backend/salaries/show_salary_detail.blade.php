@@ -4,7 +4,7 @@
 
 @section('breadcrumbs')
 <x-backend.breadcrumbs>
-    <x-backend.breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
+    <x-backend.breadcrumb-item route='{{url()->previous()}}' icon='{{ $module_icon }}'>
         {{ __($module_title) }}
     </x-backend.breadcrumb-item>
     <x-backend.breadcrumb-item type="active">{{ __($module_action) }}</x-backend.breadcrumb-item>
@@ -22,40 +22,52 @@
             </x-slot>
             <x-slot name="toolbar">
                 <x-buttons.return-back />
-                <x-buttons.edit route='{!!route("backend.$module_name.edit", $$module_name_singular)!!}' title="{{__('Edit')}} " class="ms-1" />
             </x-slot>
         </x-backend.section-header>
-        
+
+        <hr>
+
         <div class="row mt-4">
             <div class="col">
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.product") }}</th>
-                            <td>{{ $$module_name_singular->product->name }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.stage") }}</th>
-                            <td>{{ $$module_name_singular->stage->name }}</td>
+                            <th>{{ __("labels.backend.salary_details.fields.month") }}</th>
+                            <td>{{ $$module_name_singular->created_at->format('F Y') }}</td>
                         </tr>
 
                         <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.user") }}</th>
-                            <td>{{ $$module_name_singular->user->name }}</td>
+                            <th>{{ __("labels.backend.salary_details.fields.allowance") }}</th>
+                            <td>{{ number_format($$module_name_singular->allowance, 2) }} VND</td>
                         </tr>
 
                         <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.quantity") }}</th>
-                            <td>{{ $$module_name_singular->total }}</td>
+                            <th>{{ __("labels.backend.salary_details.fields.allowances") }}</th>
+                            <td>{{ number_format($$module_name_singular->allowances, 2) }} VND</td>
                         </tr>
 
                         <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.created_at") }}</th>
+                            <th>{{ __("labels.backend.salary_details.fields.product_salary") }}</th>
+                            <td>{{ number_format($$module_name_singular->product_salary, 2) }} VND</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ __("labels.backend.salary_details.fields.deductions") }}</th>
+                            <td>{{ number_format($$module_name_singular->deductions, 2) }} VND</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ __("labels.backend.salary_details.fields.total_salary") }}</th>
+                            <td><strong>{{ number_format($$module_name_singular->total_salary, 2) }} VND</strong></td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ __("labels.backend.salary_details.fields.created_at") }}</th>
                             <td>{{ $$module_name_singular->created_at }}<br><small>({{ $$module_name_singular->created_at->diffForHumans() }})</small></td>
                         </tr>
 
                         <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.updated_at") }}</th>
+                            <th>{{ __("labels.backend.salary_details.fields.updated_at") }}</th>
                             <td>{{ $$module_name_singular->updated_at }}<br /><small>({{ $$module_name_singular->updated_at->diffForHumans() }})</small></td>
                         </tr>
 
@@ -67,12 +79,13 @@
         </div>
         <!--/.row-->
     </div>
+
     <div class="card-footer">
         <div class="row">
             <div class="col">
                 <small class="float-end text-muted">
-                    Updated: {{$$module_name_singular->updated_at->diffForHumans()}},
-                    Created at: {{$$module_name_singular->created_at->isoFormat('LLLL')}}
+                    Updated: {{ $$module_name_singular->updated_at->diffForHumans() }},
+                    Created at: {{ $$module_name_singular->created_at->isoFormat('LLLL') }}
                 </small>
             </div>
         </div>

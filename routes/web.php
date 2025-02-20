@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
@@ -155,7 +156,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin'
 
     $module_name = 'salaries';
     $controller_name = 'SalaryController';
+    Route::get('/salary-details/{user}', [SalaryController::class, 'salaryDetails'])->name("{$module_name}.salary_details");
     Route::resource("{$module_name}", "{$controller_name}");
+    Route::get('/salary-details/create/{user}', [SalaryController::class,'createSalaryDetail'])->name("{$module_name}.salary_details.create");
+    Route::post('/salary-details/create/{user}', [SalaryController::class,'postSalaryDetail'])->name("{$module_name}.salary_details.post_create");
+    Route::get('/salary-details/show/{salaryDetail}', [SalaryController::class, 'showSalaryDetail'])->name("{$module_name}.salary_details.show");
+    Route::delete('/salary-details/delete/{salaryDetail}', [SalaryController::class, 'deleteSalaryDetail'])->name("{$module_name}.salary_details.delete");
+
 
     $module_name = 'employees';
     $controller_name = 'EmployeeController';

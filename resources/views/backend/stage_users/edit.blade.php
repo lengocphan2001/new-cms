@@ -34,8 +34,8 @@
 
                 <div class="row mb-3">
                     <?php
-                    $field_name = 'name';
-                    $field_label = __('labels.backend.roles.fields.name');
+                    $field_name = 'product_id';
+                    $field_label = __('labels.backend.stage_users.fields.product');
                     $field_placeholder = $field_label;
                     $required = "required";
                     ?>
@@ -46,15 +46,20 @@
                     </div>
                     <div class="col-12 col-sm-10">
                         <div class="form-group">
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            <select name="{{ $field_name }}" id="product-select" class="form-control">
+                                <option value="">Tên sản phẩm</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}" {{ $stageUser->product_id == $product->id ? 'selected' : '' }}>{{ $product->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <?php
-                    $field_name = 'name';
-                    $field_label = __('labels.backend.roles.fields.name');
+                    $field_name = 'stage_id';
+                    $field_label = __('labels.backend.stage_users.fields.stage');
                     $field_placeholder = $field_label;
                     $required = "required";
                     ?>
@@ -65,15 +70,19 @@
                     </div>
                     <div class="col-12 col-sm-10">
                         <div class="form-group">
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            <select name="{{ $field_name }}" id="stage-select" class="form-control">
+                                <option value="">Tên công đoạn</option>
+                                @foreach ($stage_ids as $stage)
+                                    <option value="{{ $stage->id }}" {{ $stageUser->stage_id == $stage->id ? 'selected' : '' }}>{{ $stage->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
-
                 <div class="row mb-3">
                     <?php
-                    $field_name = 'name';
-                    $field_label = __('labels.backend.roles.fields.name');
+                    $field_name = 'group_stage_id';
+                    $field_label = __('labels.backend.stage_users.fields.group_stage');
                     $field_placeholder = $field_label;
                     $required = "required";
                     ?>
@@ -84,15 +93,20 @@
                     </div>
                     <div class="col-12 col-sm-10">
                         <div class="form-group">
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            <select name="{{ $field_name }}" id="stage-group-select" class="form-control">
+                                <option value="">Tên nhóm công đoạn</option>
+                                @foreach ($group_stage_ids as $group_stage)
+                                    <option value="{{ $group_stage->id }}" {{ $stageUser->group_stage_id == $group_stage->id ? 'selected' : '' }}>{{ $group_stage->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <?php
-                    $field_name = 'name';
-                    $field_label = __('labels.backend.roles.fields.name');
+                    $field_name = 'total';
+                    $field_label = __('labels.backend.stage_users.fields.quantity');
                     $field_placeholder = $field_label;
                     $required = "required";
                     ?>
@@ -142,3 +156,44 @@
 </div>
 
 @endsection
+
+@if (auth()->check())
+@push('after-scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userId = {{ auth()->user()->id }};
+        const productSelect = document.getElementById('product-select');
+        if (productSelect) {
+            productSelect.addEventListener('change', function() {
+                const productId = this.value;
+                if (productId) {
+                    fetch(`/api/user-stages/${productId}/${userId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const stageSelect = document.getElementById('stage-select');
+                            stageSelect.innerHTML = '<option value="">Tên công đoạn</option>';
+                            data.stage_ids.forEach(stage => {
+                                stageSelect.innerHTML +=
+                                    `<option value="${stage.id}">${stage.name}</option>`;
+                            });
+
+                            // Populate stage group options
+                            const stageGroupSelect = document.getElementById('stage-group-select');
+                            stageGroupSelect.innerHTML = '<option value="">Nhóm công đoạn</option>';
+                            data.group_stage_ids.forEach(group => {
+                                stageGroupSelect.innerHTML +=
+                                    `<option value="${group.id}">${group.name}</option>`;
+                            });
+
+                            document.getElementById('stages-container').style.display = 'block';
+                        })
+                        .catch(error => console.error('Error fetching product stages:', error));
+                } else {
+                    document.getElementById('stages-container').style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
+@endpush
+@endif

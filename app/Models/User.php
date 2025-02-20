@@ -124,4 +124,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
             $table->save();
         });
     }
+
+    public function salaries()
+    {
+        return $this->hasMany(Salary::class);
+    }
 }

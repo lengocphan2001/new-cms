@@ -83,7 +83,7 @@ class GenerateMenus
 
 
             // san pham
-            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Nhân viên', [
+            $menu->add('<i class="nav-icon fas fa-cogs"></i> '. 'Gán công đoạn', [
                 'route' => 'backend.employees.index',
                 'class' => 'nav-item',
             ])->data([

@@ -18,21 +18,20 @@
                 @lang(":module_name Management Dashboard", ['module_name'=>__(Str::title($module_name))])
             </x-slot>
             <x-slot name="toolbar">
-            @if(auth()->user()->hasRole('super admin'))
+            {{-- @if(auth()->user()->hasRole('super admin'))
             <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
-            @endif
-                
+            @endif --}}
             </x-slot>
         </x-backend.section-header>
-        
+
         <div class="row mt-4">
             <div class="col">
                 <table class="table table-hover table-responsive-sm">
                     <thead>
                         <tr>
-                            <th>{{ __("labels.backend.$module_name.fields.stt") }}</th>
-                            <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
-                            <th class="text-end">{{ __("labels.backend.action") }}</th>
+                            <th>{{ __("STT") }}</th>
+                            <th>{{ __("Tên người dùng") }}</th>
+                            <th class="text-end">{{ __("Hành động") }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +39,7 @@
                         <tr>
                             <td>
                                 <strong>
-                                    {{ $loop->index + 1}}
+                                    {{ $loop->index + 1 }}
                                 </strong>
                             </td>
                             <td>
@@ -49,10 +48,9 @@
                                 </strong>
                             </td>
                             <td class="text-end">
-                                @can('assign_user_stages'.$module_name)
-                                <x-buttons.assign route='{!!route("backend.$module_name.assign_stages", $module_name_singular)!!}' title="{{__('Gán công đoạn')}} " small="true" />
+                                @can('view_salary_details')
+                                <x-buttons.assign route='{!! route("backend.$module_name.salary_details", $module_name_singular) !!}' title="{{__('Xem chi tiết lương')}}" small="true" />
                                 @endcan
-                                
                             </td>
                         </tr>
                         @endforeach
@@ -61,6 +59,7 @@
             </div>
         </div>
     </div>
+
     <div class="card-footer">
         <div class="row">
             <div class="col-7">

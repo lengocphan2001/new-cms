@@ -131,13 +131,10 @@
         if (productSelect) {
             productSelect.addEventListener('change', function() {
                 const productId = this.value;
-                console.log(productId);
                 if (productId) {
                     fetch(`/api/user-stages/${productId}/${userId}`)
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
-                            // Populate stage options
                             const stageSelect = document.getElementById('stage-select');
                             stageSelect.innerHTML = '<option value="">Tên công đoạn</option>';
                             data.stage_ids.forEach(stage => {
